@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<head>
+	<title>Rango</title>
+</head>
+
+<h2>Top Liked Categories</h2>
+{% if categories %}
+	<ul>
+		{% for category in categories %}
+			<li><a href='/rango/category/{{category.slug}}'>{{ category.name }}</a> - {{ category.likes }}</li>
+		{% endfor %}
+	</ul>
+{% else %}
+	<p>No categories are available.</p>
+{% endif %}	
+
+<h2>Top Viewed Pages</h2>
+{% if pages %}
+	<ul>
+		{% for page in pages %}
+			<li><a href='/rango/category/{{page.url}}'>{{ page.title }}</a> - {{ page.views }}</li>
+		{% endfor %}
+	</ul>
+{% else %}
+	<p>No categories are available.</p>
+{% endif %}	
+
+
+
+<a href='/rango/about/'>About</a>
