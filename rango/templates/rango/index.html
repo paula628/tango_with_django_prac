@@ -20,7 +20,7 @@
 {% if pages %}
 	<ul>
 		{% for page in pages %}
-			<li><a href='/rango/category/{{page.url}}'>{{ page.title }}</a> - {{ page.views }}</li>
+			<li><a href= "{{ page.url }}">{{ page.title }}</a> - {{ page.views }}</li>
 		{% endfor %}
 	</ul>
 {% else %}
@@ -28,5 +28,6 @@
 {% endif %}	
 
 
-
+<a href ='/rango/add_category'>Add New Category</a><br/>
+<a href ='/rango/add_page'>Add New Page</a><br/>
 <a href='/rango/about/'>About</a>
