@@ -51,13 +51,13 @@ def add_category(request):
     return render(request, 'rango/add_category.html', {'form': form})
 
 
-def add_page(request, category_name_slug):
+def add_page(request, category_name_slug=None):
     print 'add_page', request, category_name_slug
     try:
         cat = Category.objects.get(slug=category_name_slug)
     except Category.DoesNotExist:
         cat = None
-    print 'cat', cat, '--cat.id', cat.id
+    #print 'cat', cat, '--cat.id', cat.id
     if request.method == 'POST':
         form = PageForm(request.POST)
         print 'form-- POST', form
@@ -67,15 +67,21 @@ def add_page(request, category_name_slug):
                 page.category = cat
                 page.views = 0
                 page.save()
-            #return category(request, category_name_slug)
-            return HttpResponseRedirect(reverse('rango:category', args=(cat.slug,)))
+                #return category(request, category_name_slug)
+                return HttpResponseRedirect(reverse('rango:category', args=(cat.slug,)))
+            else:
+                 form.save(commit=True)
+                 return index(request)
         else:
             print 'error' ,form.errors
     
     else:
         print 'GET'
-        form = PageForm(initial={'category': cat.id})
-        #form.fields['category'].initial = cat.id
+        if cat:
+            form = PageForm(initial={'category': cat.id})
+            #form.fields['category'].initial = cat.id
+        else:
+            form = PageForm()
     
     context_dict = {'form': form, 'category': cat}
     url = 'rango/add_page.html'
