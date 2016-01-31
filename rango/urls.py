@@ -1,7 +1,7 @@
 from django.conf.urls import url, patterns
 from . import views
 
-urlpatterns = [
+urlpatterns = patterns("",
                 url(r'^$', views.index, name='index'),
                 url(r'^about/$', views.about , name="about"),
                 url(r'^add_category/$', views.add_category, name='add_category'),
@@ -12,4 +12,5 @@ urlpatterns = [
                 url(r'^login/$', views.user_login, name= 'login'),
                 url(r'^restricted/$', views.restricted, name= 'restricted'),
                 url(r'^logout/$', views.user_logout, name= 'logout'),
-               ]
+                
+               )

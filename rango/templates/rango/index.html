@@ -9,11 +9,18 @@
 
 <h2>Top Liked Categories</h2>
 {% if categories %}
-	<ul>
+	<table border="2" cellpadding="10" cellspacing="10" width="400">
+		<tr>
+			<th>Category</th>
+			<th>Likes</th>
+		</tr>
 		{% for category in categories %}
-			<li><a href='/rango/category/{{category.slug}}'>{{ category.name }}</a> - {{ category.likes }}</li>
+		<tr>
+			<td><a href='/rango/category/{{category.slug}}'> {{ category.name }}</a> </td>
+			<td align="center">{{ category.likes }}</td>
+		</tr>
 		{% endfor %}
-	</ul>
+	</table>
 {% else %}
 	<p>No categories are available.</p>
 {% endif %}	
@@ -28,6 +35,25 @@
 {% else %}
 	<p>No categories are available.</p>
 {% endif %}	
-
-
 {% endblock %}
+
+ {% block side_block %}
+<div class="row placeholders">
+            <div class="side-image">
+              <center>
+              <img src="{% static 'images/cup256.png' %}" width="60" height="60" class="img-responsive" alt="Oops..Still brewing">
+              </center>
+              <h4>Rango Coffee</h4>
+              <span class="text-muted">Have some!</span>
+            </div>
+          </div>
+           <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Export</a></li>
+          </ul>
+{% endblock %}
+
+
+
