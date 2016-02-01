@@ -3,15 +3,17 @@
 {% block title %}Login{% endblock %}
 
 {% block body_block %}
+<link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
 	<h1>Login to Rango</h1>
 		
-		<form id = "login_form" method="post" action="/rango/login/">
+		<form class="form-signin" role="form" id="login_form" method="post" action="/rango/login/">
 			{% csrf_token %}
-			Username: <input type="text" name="username" value=""/>
-			<br /><br/>
-			Password: <input type="text" name="password" value=""/>
-			<br/>
-			<input type="submit" value="Submit"/>
+			<h2 class= "form-signin-heading">Please Log In</h2>
+			<input class="form-control" placeholder="Username" id="username" maxlength="254" type="text" required/>
+			
+			<input class="form-control" type="password" placeholder="Password" id="password" name="password" required/>
+
+			<button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit"/>Sign In</button>
 		
 		</form>
 {% endblock %}

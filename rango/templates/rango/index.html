@@ -3,57 +3,62 @@
 {% block title %}Home{% endblock %}
 
 {% block body_block %}
-{% if user.is_authenticated %}
-	<h2> Welcome Back {{ user.username }}! </h2>
-{% endif %}
+	{% if user.is_authenticated %}
+		<div class='page-header'>
+			<h2> Welcome Back {{ user.username }}! </h2>
+		{% else %}
+			<h2> Welcome Guest! </h2>
+		{% endif %}
+		</div>
 
-<h2>Top Liked Categories</h2>
-{% if categories %}
-	<table border="2" cellpadding="10" cellspacing="10" width="400">
-		<tr>
-			<th>Category</th>
-			<th>Likes</th>
-		</tr>
-		{% for category in categories %}
-		<tr>
-			<td><a href='/rango/category/{{category.slug}}'> {{ category.name }}</a> </td>
-			<td align="center">{{ category.likes }}</td>
-		</tr>
-		{% endfor %}
-	</table>
-{% else %}
-	<p>No categories are available.</p>
-{% endif %}	
+	<div class="row placeholders">
+		<div class="col-xs-12 col-sm-6 placeholder">
+	
+			<h2>Top Liked Categories</h2>
+			{% if categories %}
+				<table border="2" cellpadding="10" cellspacing="10" width="400">
+					<tr>
+						<th>Category</th>
+						<th>Likes</th>
+					</tr>
+					{% for category in categories %}
+					<tr>
+						<td><a href='/rango/category/{{category.slug}}'> {{ category.name }}</a> </td>
+						<td align="center">{{ category.likes }}</td>
+					</tr>
+					{% endfor %}
+				</table>
+			{% else %}
+				<p>No categories are available.</p>
+			{% endif %}	
+		</div>
 
-<h2>Top Viewed Pages</h2>
-{% if pages %}
-	<ul>
-		{% for page in pages %}
-			<li><a href= "{{ page.url }}">{{ page.title }}</a> - {{ page.views }}</li>
-		{% endfor %}
-	</ul>
-{% else %}
-	<p>No categories are available.</p>
-{% endif %}	
-{% endblock %}
 
- {% block side_block %}
-<div class="row placeholders">
-            <div class="side-image">
-              <center>
-              <img src="{% static 'images/cup256.png' %}" width="60" height="60" class="img-responsive" alt="Oops..Still brewing">
-              </center>
-              <h4>Rango Coffee</h4>
-              <span class="text-muted">Have some!</span>
-            </div>
-          </div>
-           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
-          </ul>
-{% endblock %}
+		<div class="col-xs-12 col-sm-6 placeholder">
+			<div class="panel panel-primary">
+				<div class="panel panel-heading">
+					<h2>Top Viewed Pages</h2>
+					</div>
+			</div>
+				
+			{% if pages %}
+				<ul class="list-group">
+					{% for page in pages %}
+						<li class="list-group-item">
+							<a href= "{{ page.url }}">{{ page.title }}</a> 
+							<span class="badge">{{ page.views }}</span>
+							</li>
+					{% endfor %}
+				</ul>
+			{% else %}
+				<p>No categories are available.</p>
+			{% endif %}	
+			{% endblock %}
+		</div>
+
+</div>
+
+
 
 
 
